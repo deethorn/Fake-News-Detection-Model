@@ -4,7 +4,7 @@ import pickle, re, gzip
 
 # load artifacts
 #model = pickle.load(open("model1.pkl", "rb"))
-with gzip.open("model1.pkl.gz", "rb") as f:
+with gzip.open("Model/model1.pkl.gz", "rb") as f:
     model = pickle.load(f)
 vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
@@ -21,4 +21,5 @@ if st.button("Predict"):
     X = vectorizer.transform([cleaned])
     pred = model.predict(X)[0]
     st.write("Prediction:", pred)
+
 
