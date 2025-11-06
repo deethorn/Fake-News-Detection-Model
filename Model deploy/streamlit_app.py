@@ -1,9 +1,11 @@
 # save this as app.py
 import streamlit as st
-import pickle, re
+import pickle, re, gzip
 
 # load artifacts
-model = pickle.load(open("model1.pkl", "rb"))
+#model = pickle.load(open("model1.pkl", "rb"))
+with gzip.open("model1.pkl.gz", "rb") as f:
+    model = pickle.load(f)
 vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
 def clean_text(text):
@@ -19,3 +21,4 @@ if st.button("Predict"):
     X = vectorizer.transform([cleaned])
     pred = model.predict(X)[0]
     st.write("Prediction:", pred)
+
